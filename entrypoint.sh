@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # This script is the entrypoint for the Strapi application in production.
 # It ensures all required commands are executed before starting the server.
