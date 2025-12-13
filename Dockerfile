@@ -20,11 +20,11 @@ RUN npm install
 # Copy all local files to the container
 COPY . .
 
-# English Comment: Copy the entrypoint script and the assets folder
+#Copy the entrypoint script and the assets folder
 COPY entrypoint.sh /opt/app/entrypoint.sh
 COPY strapi-assets /opt/app/strapi-assets
 
-# English Comment: Make the entrypoint script executable
+#Make the entrypoint script executable
 RUN chmod +x /opt/app/entrypoint.sh
 
 # CRITICAL STEP: Build the Strapi Admin UI for production.
@@ -40,8 +40,8 @@ USER node
 # Expose the default Strapi port
 EXPOSE 1337
 
-# English Comment: Use the custom entrypoint script
+#Use the custom entrypoint script
 ENTRYPOINT ["/opt/app/entrypoint.sh"]
 
-# English Comment: Command to start Strapi in production mode (passed to the entrypoint script)
+#Command to start Strapi in production mode (passed to the entrypoint script)
 CMD ["npm", "start"]
