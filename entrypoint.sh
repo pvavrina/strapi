@@ -1,27 +1,16 @@
-#!/bin/sh
-# Strapi custom entrypoint script
+#!/bin/bash
 
-SQLITE_DEV_DB="./strapi-assets/data.db"
+# This script is the entrypoint for the Strapi application in production.
+# It ensures all required commands are executed before starting the server.
 
-echo "Starting Strapi custom entrypoint..."
-
-# Check if the SQLite development data file exists
-if [ -f "$SQLITE_DEV_DB" ]; then
-    echo "SQLite development data found. Checking if database needs import..."
-
-    # This is a placeholder. A real migration tool or logic (like using 'knex migrate:latest' 
-    # or a custom node script to dump/restore tables) is usually needed for cross-DB migration.
-    
-    echo "*** EXECUTING DATA MIGRATION (SQLite -> PostgreSQL) ***"
-    
-    # We will continue by ensuring content types are registered (via build done previously)
-    # and launching the app. The actual migration logic must be handled separately.
-    
-    echo "Assuming migration is handled by a custom script or will be done manually later."
-    
+# We rely on Strapi's built-in migration to handle schema updates
+# and environment variables to handle database connection (PostgreSQL in production).
+# We explicitly check for the node_modules presence (optional but safe).
+if [ ! -d "node_modules" ]; then
+  echo "Node modules not found. Running npm install..."
+  npm install
 fi
 
-# Always launch the main application command
-echo "Launching Strapi in production mode..."
-# The CMD in the Dockerfile will now be replaced by this script.
+# Start the Strapi application in production mode
+echo "Starting Strapi..."
 exec "$@"
