@@ -25,13 +25,28 @@
       "type": "blocks"
     },
     "origin_country": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "albums": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::album.album",
       "mappedBy": "artists"
+    },
+    "genre": {
+      "type": "enumeration",
+      "required": true,
+      "enum": [
+        "Rock",
+        "Progressive Rock",
+        "Metal",
+        "Progressive Metal",
+        "Blues",
+        "Jazz",
+        "Classic",
+        "Rap"
+      ]
     }
   }
 }

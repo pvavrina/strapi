@@ -517,6 +517,19 @@ export interface ApiArtistArtist extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    genre: Schema.Attribute.Enumeration<
+      [
+        'Rock',
+        'Progressive Rock',
+        'Metal',
+        'Progressive Metal',
+        'Blues',
+        'Jazz',
+        'Classic',
+        'Rap',
+      ]
+    > &
+      Schema.Attribute.Required;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -529,7 +542,7 @@ export interface ApiArtistArtist extends Struct.CollectionTypeSchema {
     name: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.Unique;
-    origin_country: Schema.Attribute.String;
+    origin_country: Schema.Attribute.String & Schema.Attribute.Required;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
